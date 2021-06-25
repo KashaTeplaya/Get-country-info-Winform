@@ -3,19 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-
+using System.Threading.Tasks;
 
 namespace GetCountryInfo
 {
     class CountryResponse
     {
         public static Country GetCountry { get; set; }
-        public static Country GetInfoCountryByName(string countryName)
+        public static async Task<Country> GetInfoCountryByName(string countryName)
         {
             try
             {
                 WebRequest request = WebRequest.Create($"https://restcountries.eu/rest/v2/name/{countryName}");
-                WebResponse response = request.GetResponse();
+                WebResponse response = await request.GetResponseAsync();
                 using (Stream dataStream = response.GetResponseStream())
                 {
                     StreamReader reader = new StreamReader(dataStream);

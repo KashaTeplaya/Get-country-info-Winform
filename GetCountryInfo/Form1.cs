@@ -17,11 +17,11 @@ namespace GetCountryInfo
 
         }
 
-        private void SendCntryNameButton_Click(object sender, EventArgs e)
+        private async void SendCntryNameButton_Click(object sender, EventArgs e)
         {
             try
             {
-                CountryResponse.GetInfoCountryByName(tbCountryTitle.Text);
+               await CountryResponse.GetInfoCountryByName(tbCountryTitle.Text);
                 tbCountryInfo.Text =
                     $"Название: {CountryResponse.GetCountry.name} {Environment.NewLine}" +
                     $"Код страны: {CountryResponse.GetCountry.callingCodes[0]} {Environment.NewLine}" +
